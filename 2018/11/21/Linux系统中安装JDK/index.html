@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Linux系统中安装JDK · ChengUU</title><meta name="description" content="Linux系统中安装JDK - ChengUU"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="https://github.com/ChengUU/atom.xml" title="ChengUU"></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">ChengUU</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>INDEX</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>ARCHIVES</p></a><a href="/categories" target="_self" class="li component-nav-item"><p>CATEGORIES</p></a><a href="/tags" target="_self" class="li component-nav-item"><p>TAGS</p></a><ul class="shortcut-icons"><a href="https://github.com/ChengUU" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Linux系统中安装JDK</h1><div class="post-info">2018年11月21日</div><div class="post-content"><ol>
+<li>下载合适的JDK安装包</li>
+<li><p>创建Java JDK安装位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /opt/java</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zvx -f jdk*.tar.gz /opt/java/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开用户环境变量配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_HOME=/usr/java/jdk1.8.0_141</span><br><span class="line">export JAVA_HOME</span><br><span class="line">set JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export JRE_HOME</span><br><span class="line">set JAVA_BIN=$JAVA_HOME/bin</span><br><span class="line">export JAVA_BIN</span><br><span class="line">set JAVA_LIB=$JAVA_HOME/lib</span><br><span class="line">export JAVA_LIB</span><br><span class="line"></span><br><span class="line">set CLASSPATH=.:$JAVA_LIB/tools.jar:$JAVA_LIB/dt.jar</span><br><span class="line">export CLASSPATH</span><br><span class="line">set PATH=$JAVA_BIN:$JRE_HOME/bin:$PATH</span><br><span class="line">export PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装和注册java，javac</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --install /usr/bin/java java /opt/java/jdk*/bin/java 1</span><br><span class="line">update-alternatives --install /usr/bin/javac javac /opt/java/jdk*/bin/javac 1</span><br><span class="line">update-alternatives --set java /opt/java/jdk*/bin/java </span><br><span class="line">update-alternatives --set javac /opt/java/jdk*/bin/javac</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/images/JDK安装和注册.png" alt="JDK安装和注册"></p>
+<ol start="7">
+<li>选择java，javac<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --config java</span><br><span class="line">update-alternatives --config javac</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/images/设置系统JDK环境.png" alt="设置系统JDK环境"></p>
+</div></article></div><div id="disqus_thread"></div></div><script>var disqus_shortname = '[object Object]';
+var disqus_identifier = '2018/11/21/Linux系统中安装JDK/';
+var disqus_title = 'Linux系统中安装JDK';
+var disqus_url = 'https://github.com/ChengUU/2018/11/21/Linux系统中安装JDK/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//[object Object].disqus.com/count.js" async></script></main><footer class="footer-container"><div class="paginator"><a href="/2018/11/29/Java实现十六进制编码器/" class="prev">上一篇</a><a href="/2018/11/21/git放弃本地修改-强制覆盖本地代码/" class="next">下一篇</a></div><div class="copyright"><p>© 2017 - 2025 <a href="https://github.com/ChengUU">ChengUU</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script async src="https://tajs.qq.com/stats?sId=66115146" charset="UTF-8"></script></body></html>
